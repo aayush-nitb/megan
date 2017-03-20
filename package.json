@@ -1,0 +1,35 @@
+{
+  "name": "megan",
+  "version": "0.0.1",
+  "description": "Megan",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ./dist/main.js",
+    "typings": "typings",
+    "test": "gulp:test",
+    "build": "gulp"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.4.20",
+    "typescript-rest": "^0.3.6"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "0.1.7",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.4",
+    "gulp-uglify": "1.2.0",
+    "jasmine-core": "2.4.1",
+    "lite-server": "^2.2.0",
+    "merge": "^1.2.0",
+    "rimraf": "^2.5.2",
+    "run-sequence": "^1.2.1",
+    "typescript": "^1.8.10"
+  }
+}
