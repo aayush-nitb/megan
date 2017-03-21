@@ -7,7 +7,7 @@ export abstract class Api_Module {
     static serve() {
         let app: express.Application = express();
         let mongoose = require('mongoose');
-        mongoose.connect(process.env.MONGODB_URL);
+        //mongoose.connect(process.env.MONGODB_URL);
         Server.setFileDest('/uploads');
         Server.buildServices(app);
         app.listen(3000, function() {
