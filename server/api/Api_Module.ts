@@ -10,6 +10,9 @@ export abstract class Api_Module {
         //mongoose.connect(process.env.MONGODB_URL);
         Server.setFileDest('/uploads');
         Server.buildServices(app);
+        app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+            res.json(req);
+        });
         app.listen(3000, function() {
             console.log('Rest Server listening on port 3000!');
         });
