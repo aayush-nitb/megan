@@ -8,8 +8,8 @@ export abstract class Api_Module {
     static serve() {
         let app: express.Application = express();
         let mongoose = require('mongoose');
-        let port = process.env.PORT || 3000;
-        mongoose.connect(process.env.MONGODB_URL);
+        let port = process.env['port::deamon'] || 3000;
+        mongoose.connect(process.env['mongo::deamon']);
         app.use(cors());
         Server.setFileDest('/uploads');
         Server.buildServices(app);

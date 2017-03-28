@@ -15,11 +15,8 @@ export abstract class Commons_Error {
             </body>
         `);
     }
-    static badRequest(context: ServiceContext, errors: any[]) {
+    static badRequest(context: ServiceContext, err: Error) {
         context.response.status(400);
-        context.response.json({
-            status: 400,
-            errors: errors
-        });
+        context.response.json(err);
     }
 }
