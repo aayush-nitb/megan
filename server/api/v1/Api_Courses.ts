@@ -1,4 +1,4 @@
-import { Path, Context, ServiceContext, GET, PathParam } from 'typescript-rest'
+import { Path, Context, ServiceContext, GET, PathParam, PUT } from 'typescript-rest'
 import { Document } from 'mongoose'
 import { Commons_Error } from '../../commons/Commons_Error'
 
@@ -19,12 +19,26 @@ abstract class Api_Courses {
         });
     }
 
-    @GET
-    @Path(':name')
+    @GET @Path(':name')
     get( @PathParam('name') name: string) {
         return new Promise<Document>((resolve, reject) => {
             Course.findOne({name: name}, {_id: false}, (err: Error, data: Document) => {
                 if (data && !err) resolve(data);
+                else Commons_Error.notFound(this.context);
+            });
+        });
+    }
+
+    @PUT @Path(':name')
+    put( @PathParam('name') name: string, course: Document) {
+        return new Promise<Document>((resolve, reject) => {
+            let errors = Course.validationErrors();
+            if (errors) {
+                Commons_Error.badRequest(this.context, errors);
+                return;
+            }
+            Course.update({name: name}, course, (err: Error, count: number) => {
+                if (count && !err) resolve();
                 else Commons_Error.notFound(this.context);
             });
         });
