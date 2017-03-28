@@ -32,7 +32,7 @@ abstract class Api_Courses {
     @PUT @Path(':name')
     put( @PathParam('name') name: string, data: Object) {
         return new Promise<Document>((resolve, reject) => {
-            Course.update({name: name}, data, {runValidators: true}, (err: Error, count: number) => {
+            Course.update({name: name, isPredefined: false}, data, {runValidators: true}, (err: Error, count: number) => {
                 if (count && !err) this.context.response.json({
                     status: 200,
                     message: 'document updated'
