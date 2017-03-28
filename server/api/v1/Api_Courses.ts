@@ -1,4 +1,4 @@
-import { Path, Context, ServiceContext, GET, PathParam, PUT } from 'typescript-rest'
+import { Path, Context, ServiceContext, GET, PathParam, PUT, POST, DELETE } from 'typescript-rest'
 import { Document, Model } from 'mongoose'
 import { Commons_Error } from '../../commons/Commons_Error'
 
@@ -36,6 +36,21 @@ abstract class Api_Courses {
                 if (count && !err) this.context.response.json({
                     status: 200,
                     message: 'document updated'
+                });
+                else Commons_Error.badRequest(this.context, err);
+            });
+        });
+    }
+
+    @POST
+    post(data: Object) {
+        return new Promise<Document>((resolve, reject) => {
+            let course = new Course(data);
+            course.set('isPredefined', false);
+            course.save((err: Error, count: number) => {
+                if (count && !err) this.context.response.json({
+                    status: 200,
+                    message: 'document saved'
                 });
                 else Commons_Error.badRequest(this.context, err);
             });
